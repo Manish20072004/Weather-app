@@ -1,0 +1,362 @@
+.Main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* filter: blur(1px); */
+  z-index: -1;
+}
+
+.heading {
+  color: #fff;
+  text-shadow: 4px 4px 14px rgba(0, 0, 0, 0.9);
+  font-size: 2.5rem;
+  align-self: start;
+  margin-bottom: 30px;
+  margin-left: 20px;
+}
+
+.form {
+  display: flex;
+  position: absolute;
+  top: 38px;
+  right: 45px;
+}
+
+.inputBox {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  width: 190px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+  margin-right: 3px;
+  transition: all 0.3s ease;
+}
+
+.inputBox:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.searchBtn {
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  margin-left: 3px;
+  cursor: pointer;
+  font-size: .8rem;
+  transition: background-color 0.3s ease;
+}
+
+.searchBtn:hover {
+  background-color: rgb(82, 82, 230);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.weatherCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 800px;
+  text-align: center;
+  box-shadow: 0px 0px 30px rgba(227, 228, 237, 0.4);
+  background-size: cover;
+  background-position: center;
+  color: rgb(255, 255, 255);
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(225, 225, 225, 0.18)
+}
+
+.locName {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.temp {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.humidity,
+.windSpeed,
+.condition {
+  font-size: 1.2rem;
+  margin: 5px 0;
+  color: #f0f0f0;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+.weatherIcon {
+  width: 100px;
+  height: 100px;
+}
+
+.forecastContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 30px;
+}
+
+.forecastCard {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 15px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.forecastCard img {
+  width: 50px;
+  height: 50px;
+}
+
+.date {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.maxTemp,
+.minTemp,
+.conditionText {
+  font-size: 1rem;
+  margin: 5px 0;
+  color: #454444;
+}
+
+/* Loader wrapper with blur effect */
+.spinnerOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  backdrop-filter: blur(5px); /* Background blur */
+}
+
+/* Loader Animation */
+.loader {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.loader div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fdfdfd;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.loader div:nth-child(1) {
+  left: 8px;
+  animation: flip1 0.6s infinite;
+}
+
+.loader div:nth-child(2) {
+  left: 8px;
+  animation: flip2 0.6s infinite;
+}
+
+.loader div:nth-child(3) {
+  left: 32px;
+  animation: flip2 0.6s infinite;
+}
+
+.loader div:nth-child(4) {
+  left: 56px;
+  animation: flip3 0.6s infinite;
+}
+
+@keyframes flip1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes flip3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes flip2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .forecastContainer {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  .inputBox {
+    width: 200px;
+  }
+
+  .searchBtn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+
+  .weatherCard {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 2.4rem;
+    margin-left: 10px;
+  }
+
+  .inputBox {
+    width: 180px;
+  }
+
+  .forecastContainer {
+    gap: 10px;
+  }
+}
+
+@media (max-width:630px){
+  .heading{
+    margin-left: 0;
+    margin-bottom: 15px;
+    font-size: 2rem;
+    align-self: center;
+  }
+
+  .form {
+    position: static;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form {
+    position: static;
+    margin-bottom: 20px;
+  }
+
+  .heading {
+    margin-left: 0;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 2.2rem;
+    align-self: center;
+  }
+
+  .inputBox {
+    width: 150px;
+    margin-right: 0;
+  }
+
+  .searchBtn {
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+}
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(10px); 
+}
+
+.modal {
+  background-color: #222; 
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: #f0f0f0;
+  z-index: 1001;
+  transition: transform 0.3s ease; 
+  transform: scale(1.1);
+}
+
+.modal h2 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: #5149f6;
+}
+
+.modal p {
+  margin-bottom: 25px;
+  font-size: 16px;
+}
+
+.modal button {
+  padding: 12px 25px;
+  border: none;
+  background-color: #4e68bc; 
+  color: #fff;
+  border-radius: 25px; 
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.modal button:hover {
+  background-color: #353e8c;
+  transform: translateY(-2px); 
+}
